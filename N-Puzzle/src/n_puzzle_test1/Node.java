@@ -13,14 +13,14 @@ public class Node {
 		this.K = K;
 		this.h = 0;
 		values= new int [K][K];
-		System.out.println("Creating node with K="+K);
+		/*System.out.println("Creating node with K="+K);*/
 	}
 	public void fill_random_values()
 	{
-		System.out.println("Filling in random values.....");
+		/*System.out.println("Filling in random values.....");*/
 		fill_values();
 		randomize_values(100);							/*Randomize values 100 times*/
-		System.out.println("Successful");
+		/*System.out.println("Successful");*/
 	}
 	public void fill_values()
 	{
@@ -35,7 +35,7 @@ public class Node {
 	public void randomize_values(int N)
 	{
 		Random rand = new Random();
-		System.out.println("In random, value of K="+this.K);
+		/*System.out.println("In random, value of K="+this.K);*/
 		for(int i=0;i<N; ++i)
 		{
 			int x1=rand.nextInt(K);
@@ -55,8 +55,9 @@ public class Node {
 			{
 				System.out.print(values[i][j]+"  ");
 			}
-			System.out.print("-----"+'\n');
+			System.out.print('\n');
 		}
+		System.out.println("----------");
 	}
 	public void seth(Node N)
 	{
@@ -69,5 +70,87 @@ public class Node {
 					++(this.h);
 			}
 		}
+	}
+	public int[] locateemptytile()
+	{
+		int y[] = {0,0};
+		for(int i=0;i<K; ++i)
+		{
+			for(int j=0; j<K; ++j)
+			{
+				if(values[i][j]==0)
+				{
+					y[0]=i;
+					y[1]=j;
+				}
+			}
+		}
+		return y;
+	}
+	public Node moveup(Node a)
+	{
+		Node x = this;
+		int xy[] = x.locateemptytile();
+		if (xy[0]>0)
+		{
+			int y = x.values[xy[0]][xy[1]];
+			x.values[xy[0]][xy[1]] = x.values[xy[0]-1][xy[1]];
+			x.values[xy[0]-1][xy[1]] = y;
+		}
+		x.seth(a);
+		return x;
+	}
+	public Node movedown(Node a)
+	{
+		Node x = this;
+		int xy[] = x.locateemptytile();
+		if (xy[0]<K-1)
+		{
+			int y = x.values[xy[0]][xy[1]];
+			x.values[xy[0]][xy[1]] = x.values[xy[0]+1][xy[1]];
+			x.values[xy[0]+1][xy[1]] = y;
+		}
+		x.seth(a);
+		return x;
+	}
+	public Node moveleft(Node a)
+	{
+		Node x = this;
+		int xy[] = x.locateemptytile();
+		if (xy[1]>0)
+		{
+			int y = x.values[xy[0]][xy[1]];
+			x.values[xy[0]][xy[1]] = x.values[xy[0]][xy[1]-1];
+			x.values[xy[0]][xy[1]-1] = y;
+		}
+		x.seth(a);
+		return x;
+	}
+	public Node moveright(Node a)
+	{
+		Node x = this;
+		int xy[] = x.locateemptytile();
+		if (xy[1]<K-1)
+		{
+			int y = x.values[xy[0]][xy[1]];
+			x.values[xy[0]][xy[1]] = x.values[xy[0]][xy[1]+1];
+			x.values[xy[0]][xy[1]+1] = y;
+		}
+		x.seth(a);
+		return x;
+	}
+	public boolean same (Node x)
+	{
+		if (K!=x.K)
+			return false;
+		for(int i=0; i<K; ++i)
+		{
+			for( int j=0; j<K; ++j)
+			{
+				if (values[i][j]!=x.values[i][j])
+					return false;
+			}
+		}
+		return true;
 	}
 }
