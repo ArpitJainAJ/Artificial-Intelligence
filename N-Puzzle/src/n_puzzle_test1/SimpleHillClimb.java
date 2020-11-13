@@ -3,13 +3,13 @@ package n_puzzle_test1;
 public class SimpleHillClimb {
 
 	int steps;
-	boolean issuccessful;
+	boolean isSuccessful;
 	Node initial_node, goal_node;
 	
 	public SimpleHillClimb()
 	{
 		steps=0;
-		issuccessful=false;
+		isSuccessful=false;
 	}
 	
 	public void initialize(Node goal_node, Node initial_node)
@@ -35,7 +35,7 @@ public class SimpleHillClimb {
 			{
 				System.out.println("We have reached the goal in "+steps+" steps");
 				flag=0;
-				issuccessful=true;
+				isSuccessful=true;
 			}
 			if((xy[0]>0)&&(flag==1))
 			{
@@ -101,7 +101,7 @@ public class SimpleHillClimb {
 			{
 				System.out.println("The algorithm has reached either a plateau or a local minima and hence could not reach the goal after performing Steps: "+steps+".");
 				flag=0;
-				issuccessful=false;
+				isSuccessful=false;
 			}
 		}
 	}

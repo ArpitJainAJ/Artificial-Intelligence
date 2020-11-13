@@ -9,7 +9,7 @@ public class HillClimbingWithRandomRestart {
 	public HillClimbingWithRandomRestart()
 	{
 		steps=0;
-		noofrestarts=100;				//100 Random Restart can be done until the goal is found
+		noofrestarts=100;				/*100 Random Restart can be done until the goal is found*/
 		isSuccessful=false;
 	}
 	
@@ -33,7 +33,7 @@ public class HillClimbingWithRandomRestart {
 				shc = new SimpleHillClimb();
 				shc.initialize(goal_node, current_node);
 				steps+=shc.steps;
-				if(shc.issuccessful)
+				if(shc.isSuccessful)
 				{
 					isSuccessful=true;
 				}
