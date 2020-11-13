@@ -23,14 +23,14 @@ public class Test_1 {
 			}
 			else
 			{
-				System.out.println("Creating a puzzle for N="+N);
+				System.out.println('\n'+"<====================>"+'\n'+"Creating a puzzle for N = "+N);
 				N_Puzzle puzzle_1 = new N_Puzzle((int) Math.sqrt(N+1));
 				System.out.println("Initializing the puzzle");
 				puzzle_1.initialize();
+				System.out.println("Completed the puzzle for N = "+N+'\n'+"<====================>"+'\n');
 			}
 		}
 		in.close();
-		
 	}
 	public static boolean checkPerfectSquare(double n)
 	{

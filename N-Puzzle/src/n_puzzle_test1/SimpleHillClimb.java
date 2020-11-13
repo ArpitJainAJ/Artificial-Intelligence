@@ -5,81 +5,111 @@ public class SimpleHillClimb {
 	int steps;
 	Node initial_node, goal_node;
 	
-	public SimpleHillClimb()
+	public SimpleHillClimb(int K)
 	{
 		steps=0;
 	}
 	
-	public void initialize(Node goal_node, Node initial_node, int K)
+	public void initialize(Node goal_node, Node initial_node)
 	{
 		this.initial_node=initial_node;
 		this.goal_node=goal_node;
-		System.out.println('\n'+"Initializing Simple Hill Climb");
+		System.out.println('\n'+"Initializing Simple Hill Climb ---------->");
 		run();
+		System.out.println('\n'+"Completed Simple Hill Climb <---------->");
 	}
 	public void run()
 	{
-		int flag=1;
+		int flag=1;						// 0 = exit loop, 1 = Keep loop on(value not yet found), 2 = found value
 		Node current_node = initial_node;
 		while(flag!=0)
 		{
-			System.out.println("Step:"+steps);
-			printemptytile(current_node);
+			flag=1;
+			System.out.println('\n'+"Step: "+steps);
+			printemptytileandh(current_node);
+			current_node.display();
 			int xy[] = current_node.locateemptytile();
 			if(current_node.same(goal_node))
 			{
 				System.out.println("We have reached the goal in "+steps+" steps");
 				flag=0;
 			}
-			else if(xy[0]>0)
+			if((xy[0]>0)&&(flag==1))
 			{
+				System.out.print("Checking up, ");
 				Node up_node = current_node.moveup(goal_node);
-				if(up_node.h < goal_node.h)
+				printemptytileandh(up_node);
+				up_node.display();
+				if((up_node.h) < (current_node.h))
 				{
+					System.out.println("Found the better move in up");
+					flag=2;
 					++steps;
+					current_node=up_node;
 					continue;
 				}
 			}
-			else if(xy[0]<current_node.K-1)
+			if((xy[0]<current_node.K-1)&&(flag==1))
 			{
+				System.out.print("Checking down, ");
 				Node down_node = current_node.movedown(goal_node);
-				if(down_node.h < goal_node.h)
+				printemptytileandh(down_node);
+				down_node.display();
+				if((down_node.h) < (current_node.h))
 				{
+					System.out.println("Found the better move in down");
+					flag=2;
 					++steps;
+					current_node=down_node;
 					continue;
 				}
 			}
-			else if(xy[1]>0)
+			if((xy[1]>0)&&(flag==1))
 			{
+				System.out.print("Checking left, ");
 				Node left_node = current_node.moveleft(goal_node);
-				if(left_node.h < goal_node.h)
+				printemptytileandh(left_node);
+				left_node.display();
+				if((left_node.h) < (current_node.h))
 				{
+					System.out.println("Found the better move in left");
+					flag=2;
 					++steps;
+					current_node=left_node;
 					continue;
 				}
 			}
-			else if(xy[0]<current_node.K-1)
+			if((xy[1]<current_node.K-1)&&(flag==1))
 			{
+				System.out.print("Checking right, ");
 				Node right_node = current_node.moveright(goal_node);
-				if(right_node.h < goal_node.h)
+				printemptytileandh(right_node);
+				right_node.display();
+				if((right_node.h) < (current_node.h))
 				{
+					System.out.println("Found the better move in right");
+					flag=2;
 					++steps;
+					current_node=right_node;
 					continue;
 				}
 			}
-			else
+			if(flag==1)
 			{
-				System.out.println("The algorithm has reached a plateau and hence could not reach the goal");
+				System.out.println("The algorithm has reached a plateau and hence could not reach the goal after performing Steps: "+steps+".");
 				flag=0;
 			}
-			
 		}
+	}
+	public void printemptytileandh(Node x)
+	{
+		printemptytile(x);
+		System.out.println(", h="+x.h);
 	}
 	public void printemptytile(Node x)
 	{
 		System.out.print("Empty tile: ");
 		printcords(x.locateemptytile());
-		System.out.print('\n');
 	}
 	public void printcords(int x[])
 	{

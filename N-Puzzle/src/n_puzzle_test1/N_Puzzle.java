@@ -30,20 +30,20 @@ public class N_Puzzle {
 		System.out.println('\n'+"Initial State:");
 		initial_node.display();
 		
-		System.out.println("Generating output through Simple Hill Climb");
-		shc.initialize(goal_node, initial_node, K);
-		/*
+		
+		
 		try
 		{
-			System.out.println("Generating output through Simple Hill Climb");
-			shc.initialize(goal_node, initial_node, K);
+			/*System.out.println('\n'+"Generating output through Simple Hill Climb");*/
+			shc = new SimpleHillClimb(K);
+			shc.initialize(goal_node, initial_node);
 		}
 		catch(Exception e)
 		{
 			System.out.println("Found some errors in Simple Hill Climb");
 			e.printStackTrace();
 		}
-		
+		/*
 		try
 		{
 			System.out.println("Generating output through Hill Climb with Random Restart");

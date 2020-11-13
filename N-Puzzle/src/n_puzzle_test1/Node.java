@@ -15,6 +15,19 @@ public class Node {
 		values= new int [K][K];
 		/*System.out.println("Creating node with K="+K);*/
 	}
+	public Node(Node x)
+	{
+		this.h=x.h;
+		this.K=x.K;
+		this.values= new int [K][K];
+		for (int i=0;i<K;++i)
+		{
+			for(int j=0; j<K; ++j)
+			{
+				values[i][j]=x.values[i][j];
+			}
+		}
+	}
 	public void fill_random_values()
 	{
 		/*System.out.println("Filling in random values.....");*/
@@ -89,7 +102,7 @@ public class Node {
 	}
 	public Node moveup(Node a)
 	{
-		Node x = this;
+		Node x = new Node(this);
 		int xy[] = x.locateemptytile();
 		if (xy[0]>0)
 		{
@@ -102,7 +115,7 @@ public class Node {
 	}
 	public Node movedown(Node a)
 	{
-		Node x = this;
+		Node x = new Node(this);
 		int xy[] = x.locateemptytile();
 		if (xy[0]<K-1)
 		{
@@ -115,7 +128,7 @@ public class Node {
 	}
 	public Node moveleft(Node a)
 	{
-		Node x = this;
+		Node x = new Node(this);
 		int xy[] = x.locateemptytile();
 		if (xy[1]>0)
 		{
@@ -128,7 +141,7 @@ public class Node {
 	}
 	public Node moveright(Node a)
 	{
-		Node x = this;
+		Node x = new Node(this);
 		int xy[] = x.locateemptytile();
 		if (xy[1]<K-1)
 		{
