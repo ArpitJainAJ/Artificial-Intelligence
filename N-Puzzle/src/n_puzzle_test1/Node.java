@@ -152,7 +152,7 @@ public class Node {
 		x.seth(a);
 		return x;
 	}
-	public boolean same (Node x)
+	public boolean issame (Node x)
 	{
 		if (K!=x.K)
 			return false;

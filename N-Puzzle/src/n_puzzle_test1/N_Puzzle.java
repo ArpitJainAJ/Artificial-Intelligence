@@ -35,7 +35,7 @@ public class N_Puzzle {
 		try
 		{
 			/*System.out.println('\n'+"Generating output through Simple Hill Climb");*/
-			shc = new SimpleHillClimb(K);
+			shc = new SimpleHillClimb();
 			shc.initialize(goal_node, initial_node);
 		}
 		catch(Exception e)
@@ -43,18 +43,18 @@ public class N_Puzzle {
 			System.out.println("Found some errors in Simple Hill Climb");
 			e.printStackTrace();
 		}
-		/*
 		try
 		{
-			System.out.println("Generating output through Hill Climb with Random Restart");
-			hcr.initialize(goal_node, initial_node, K);
+			/*System.out.println("Generating output through Hill Climb with Random Restart");*/
+			hcr = new HillClimbingWithRandomRestart();
+			hcr.initialize(goal_node, initial_node);
 		}
 		catch(Exception e)
 		{
 			System.out.println("Found some errors in Hill Climb with Random Restart");
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}
-		
+		/*
 		try
 		{
 			System.out.println("Generating output through Simulated Annealing");
@@ -63,7 +63,7 @@ public class N_Puzzle {
 		catch(Exception e)
 		{
 			System.out.println("Found some errors in Simulated Annealing");
-			System.out.println(e);
+			e.printStackTrace();
 		}*/
 	}
 

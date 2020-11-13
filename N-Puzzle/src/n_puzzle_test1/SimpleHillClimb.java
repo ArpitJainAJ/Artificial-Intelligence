@@ -3,17 +3,19 @@ package n_puzzle_test1;
 public class SimpleHillClimb {
 
 	int steps;
+	boolean issuccessful;
 	Node initial_node, goal_node;
 	
-	public SimpleHillClimb(int K)
+	public SimpleHillClimb()
 	{
 		steps=0;
+		issuccessful=false;
 	}
 	
 	public void initialize(Node goal_node, Node initial_node)
 	{
-		this.initial_node=initial_node;
-		this.goal_node=goal_node;
+		this.initial_node = new Node(initial_node);
+		this.goal_node = new Node(goal_node);
 		System.out.println('\n'+"Initializing Simple Hill Climb ---------->");
 		run();
 		System.out.println('\n'+"Completed Simple Hill Climb <---------->");
@@ -21,7 +23,7 @@ public class SimpleHillClimb {
 	public void run()
 	{
 		int flag=1;						// 0 = exit loop, 1 = Keep loop on(value not yet found), 2 = found value
-		Node current_node = initial_node;
+		Node current_node = new Node(initial_node);
 		while(flag!=0)
 		{
 			flag=1;
@@ -29,10 +31,11 @@ public class SimpleHillClimb {
 			printemptytileandh(current_node);
 			current_node.display();
 			int xy[] = current_node.locateemptytile();
-			if(current_node.same(goal_node))
+			if(current_node.issame(goal_node))
 			{
 				System.out.println("We have reached the goal in "+steps+" steps");
 				flag=0;
+				issuccessful=true;
 			}
 			if((xy[0]>0)&&(flag==1))
 			{
@@ -96,8 +99,9 @@ public class SimpleHillClimb {
 			}
 			if(flag==1)
 			{
-				System.out.println("The algorithm has reached a plateau and hence could not reach the goal after performing Steps: "+steps+".");
+				System.out.println("The algorithm has reached either a plateau or a local minima and hence could not reach the goal after performing Steps: "+steps+".");
 				flag=0;
+				issuccessful=false;
 			}
 		}
 	}
