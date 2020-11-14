@@ -17,6 +17,8 @@ public class N_Puzzle {
 	HillClimbingWithRandomRestart hcr;
 	SimulatedAnnealing sa;
 	
+	Result r;
+	
 	public void initialize()
 	{
 		/* Goal node is the first in order to calculate heuristic value for others*/
@@ -29,13 +31,14 @@ public class N_Puzzle {
 		initial_node.seth(goal_node);
 		System.out.println('\n'+"Initial State:");
 		initial_node.display();
-		
+		r = new Result();
 		
 		
 		try
 		{
 			shc = new SimpleHillClimb();
 			shc.initialize(goal_node, initial_node);
+			r.shc = new stat(shc.result);
 		}
 		catch(Exception e)
 		{
@@ -46,6 +49,7 @@ public class N_Puzzle {
 		{
 			hcr = new HillClimbingWithRandomRestart();
 			hcr.initialize(goal_node, initial_node);
+			r.hcr = new stat(hcr.result);
 		}
 		catch(Exception e)
 		{
@@ -57,6 +61,7 @@ public class N_Puzzle {
 			/*System.out.println("Generating output through Simulated Annealing");*/
 			sa = new SimulatedAnnealing();
 			sa.initialize(goal_node, initial_node);
+			r.sa = new stat(sa.result);
 		}
 		catch(Exception e)
 		{

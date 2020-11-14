@@ -2,40 +2,40 @@ package n_puzzle_test1;
 
 public class HillClimbingWithRandomRestart {
 
-	int steps, noofrestarts;
+	int noofrestarts;
 	Node initial_node, goal_node;
 	SimpleHillClimb shc;
-	boolean isSuccessful;
+	
+	stat result;
 	public HillClimbingWithRandomRestart()
 	{
-		steps=0;
+		result = new stat();
 		noofrestarts=100;				/*100 Random Restart can be done until the goal is found*/
-		isSuccessful=false;
 	}
 	
 	public void initialize(Node goal_node, Node initial_node)
 	{
 		this.initial_node = new Node(initial_node);
 		this.goal_node = new Node(goal_node);
-		System.out.println('\n'+"Initializing Simple Hill Climb with Random Restart ---------->");
+		/*System.out.println('\n'+"Initializing Simple Hill Climb with Random Restart ---------->");*/
 		run();
-		System.out.println('\n'+"Completed Simple Hill Climb with Random Restart<---------->");
+		/*System.out.println('\n'+"Completed Simple Hill Climb with Random Restart<---------->");*/
 	}
 	public void run()
 	{
 		Node current_node = new Node(initial_node);
 		for(int i=1; i<=noofrestarts; ++i)
 		{
-			System.out.println('\n'+"Initial Start count = "+i+", Total Steps = "+steps);
+			/*System.out.println('\n'+"Initial Start count = "+i+", Total Steps = "+result.steps);*/
 			try
 			{
 				/*System.out.println('\n'+"Generating output through Simple Hill Climb");*/
 				shc = new SimpleHillClimb();
 				shc.initialize(goal_node, current_node);
-				steps+=shc.steps;
-				if(shc.isSuccessful)
+				result.steps+=shc.result.steps;
+				if(shc.result.isSuccessful)
 				{
-					isSuccessful=true;
+					result.isSuccessful=true;
 				}
 			}
 			catch(Exception e)
@@ -43,7 +43,7 @@ public class HillClimbingWithRandomRestart {
 				System.out.println("Found some errors in Simple Hill Climb");
 				e.printStackTrace();
 			}
-			if(isSuccessful)
+			if(result.isSuccessful)
 			{
 				break;
 			}
