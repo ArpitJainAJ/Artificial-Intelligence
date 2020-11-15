@@ -16,7 +16,7 @@ public class N_Puzzle {
 	SimpleHillClimb shc;
 	HillClimbingWithRandomRestart hcr;
 	SimulatedAnnealing sa;
-	
+	AStar as;
 	Result r;
 	
 	public void initialize()
@@ -58,7 +58,6 @@ public class N_Puzzle {
 		}
 		try
 		{
-			/*System.out.println("Generating output through Simulated Annealing");*/
 			sa = new SimulatedAnnealing();
 			sa.initialize(goal_node, initial_node);
 			r.sa = new stat(sa.result);
@@ -66,6 +65,17 @@ public class N_Puzzle {
 		catch(Exception e)
 		{
 			System.out.println("Found some errors in Simulated Annealing");
+			e.printStackTrace();
+		}
+		try
+		{
+			as = new AStar();
+			as.initialize(goal_node, initial_node);
+			r.as = new stat(as.result);
+		}
+		catch(Exception e)
+		{
+			System.out.println("Found some errors in A*");
 			e.printStackTrace();
 		}
 	}

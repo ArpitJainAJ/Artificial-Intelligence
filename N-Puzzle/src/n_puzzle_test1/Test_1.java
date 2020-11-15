@@ -14,9 +14,13 @@ public class Test_1 {
 		{
 			System.out.println("Enter the value of N for N-puzzle. Enter 0 to exit.");
 			N = in.nextInt();
+			if(N==0)
+			{
+				break;
+			}
 			System.out.println("Enter the number of times to test the puzzle with each method. Enter 0 to exit.");
 			test = in.nextInt();
-			if((N==0)||(test==0))
+			if(test==0)
 			{
 				break;
 			}
@@ -33,7 +37,7 @@ public class Test_1 {
 				r = new Result[test];
 				for(int i=0; i<test; ++i)
 				{
-					System.out.println('\n'+"<====================>"+'\n'+"Creating a puzzle for N = "+N+", Test = "+test);
+					System.out.println('\n'+"<====================>"+'\n'+"Creating a puzzle for N = "+N+", Test = "+(i+1));
 					N_Puzzle puzzle_1 = new N_Puzzle((int) Math.sqrt(N+1));
 					/*System.out.println("Initializing the puzzle");*/
 					puzzle_1.initialize();
@@ -49,16 +53,20 @@ public class Test_1 {
 					(finalresult.shc.steps)+=((r[i]).shc.steps);
 					(finalresult.hcr.steps)+=((r[i]).hcr.steps);
 					(finalresult.sa.steps)+=((r[i]).sa.steps);
+					(finalresult.as.steps)+=((r[i]).as.steps);
 					if((r[i]).shc.isSuccessful)
 						(successrate.shc.steps)+=1;
 					if((r[i]).hcr.isSuccessful)
 						(successrate.hcr.steps)+=1;
 					if((r[i]).sa.isSuccessful)
 						(successrate.sa.steps)+=1;
+					if((r[i]).as.isSuccessful)
+						(successrate.as.steps)+=1;
 				}
 				System.out.println("In SHC, Total steps = "+finalresult.shc.steps+", no of success = "+successrate.shc.steps);
 				System.out.println("In HRC, Total steps = "+finalresult.hcr.steps+", no of success = "+successrate.hcr.steps);
 				System.out.println("In SA, Total steps = "+finalresult.sa.steps+", no of success = "+successrate.sa.steps);
+				System.out.println("In A*, Total steps = "+finalresult.as.steps+", no of success = "+successrate.as.steps);
 
 			}
 		}

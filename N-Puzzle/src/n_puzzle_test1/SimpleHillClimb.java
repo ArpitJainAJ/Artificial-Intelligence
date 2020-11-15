@@ -3,7 +3,6 @@ package n_puzzle_test1;
 public class SimpleHillClimb {
 
 	Node initial_node, goal_node;
-	
 	stat result;
 	public SimpleHillClimb()
 	{
