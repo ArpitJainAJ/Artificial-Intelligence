@@ -39,10 +39,10 @@ public class AStar {
 			//System.out.println('\n'+"Step: "+current_node.steps);
 			//printemptytileandh(current_node);
 			//current_node.display();
-			if(current_node.steps >25)
+			if(current_node.steps > 35)
 			{
 				//System.out.println("This node is not solvable");
-				continue;
+					break;
 			}
 			int xy[] = current_node.locateemptytile();
 			if(current_node.issame(goal_node))
