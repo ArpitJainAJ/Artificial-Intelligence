@@ -10,7 +10,7 @@ public class HillClimbingWithRandomRestart {
 	public HillClimbingWithRandomRestart()
 	{
 		result = new stat();
-		noofrestarts=100;				/*100 Random Restart can be done until the goal is found*/
+		noofrestarts=10000;				/*100 Random Restart can be done until the goal is found*/
 	}
 	
 	public void initialize(Node goal_node, Node initial_node)

@@ -36,9 +36,14 @@ public class AStar {
 		while(!(pq.isEmpty()))
 		{
 			current_node = pq.poll();
-			System.out.println('\n'+"Step: "+current_node.steps);
-			printemptytileandh(current_node);
-			current_node.display();
+			//System.out.println('\n'+"Step: "+current_node.steps);
+			//printemptytileandh(current_node);
+			//current_node.display();
+			if(current_node.steps >25)
+			{
+				//System.out.println("This node is not solvable");
+				continue;
+			}
 			int xy[] = current_node.locateemptytile();
 			if(current_node.issame(goal_node))
 			{
@@ -56,7 +61,7 @@ public class AStar {
 				if(!(isSameLocation(up_node.grandparent_location, up_node.locateemptytile())))
 				{	
 					pq.add(up_node);
-					printemptytileandh(up_node);
+					//printemptytileandh(up_node);
 				}
 				/*up_node.display();*/
 			}
@@ -68,7 +73,7 @@ public class AStar {
 				if(!(isSameLocation(left_node.grandparent_location, left_node.locateemptytile())))
 				{
 					pq.add(left_node);
-					printemptytileandh(left_node);
+					//printemptytileandh(left_node);
 				}
 				/*left_node.display();*/
 			}
@@ -80,7 +85,7 @@ public class AStar {
 				if(!(isSameLocation(down_node.grandparent_location, down_node.locateemptytile())))
 				{
 					pq.add(down_node);
-					printemptytileandh(down_node);
+					//printemptytileandh(down_node);
 				}
 				/*down_node.display();*/
 			}
@@ -92,17 +97,16 @@ public class AStar {
 				if(!(isSameLocation(right_node.grandparent_location, right_node.locateemptytile())))
 				{
 					pq.add(right_node);
-					printemptytileandh(right_node);
+					//printemptytileandh(right_node);
 				}
 				/*right_node.display();*/
 			}
-			if(current_node.steps==15)
-				break;
+
 		}
-		if(result.isSuccessful==false)
+		/*if(result.isSuccessful==false)
 		{
-			/*System.out.println("The algorithm could not reach the goal.");*/
-		}
+			System.out.println("The algorithm could not reach the goal.");
+		}*/
 	}
 	public void printemptytileandh(Node x)
 	{

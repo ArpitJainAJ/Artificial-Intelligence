@@ -222,4 +222,35 @@ public class Node {
 		}
 		return y;
 	}
+	public boolean isSolvable (Node a)
+	{
+		int inv_count = 0;
+		int x[] = {-1,-1};
+		int y[] = {-1,-1};
+		for( int i=0; i<K; ++i)
+		{
+			for( int j=0; j<K; ++j)
+			{
+				if(a.values[i][j]!=0)
+				{
+					for(int k=i; k<K; ++k)
+					{
+						for(int l=j+1; l<K; ++l)
+						{
+							if(a.values[k][l]!=0)
+							{
+								x = locate(a.values[i][j]);
+								y = locate(a.values[k][l]);
+								if( ((x[0])*K + x[1]) > ((y[0])*K + y[1]) )
+								{
+									inv_count++;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		return (inv_count%2==0);
+	}
 }

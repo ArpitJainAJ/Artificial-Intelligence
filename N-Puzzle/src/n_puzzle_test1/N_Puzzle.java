@@ -24,21 +24,28 @@ public class N_Puzzle {
 		/* Goal node is the first in order to calculate heuristic value for others*/
 		goal_node = new Node(K);
 		goal_node.fill_random_values();
-		System.out.println('\n'+"Goal State:");
-		goal_node.display();
+		/*System.out.println('\n'+"Goal State:");
+		goal_node.display();*/
 		initial_node = new Node(K);
-		initial_node.fill_random_values();
-		initial_node.seth(goal_node);
-		System.out.println('\n'+"Initial State:");
-		initial_node.display();
-		r = new Result();
+		do
+		{
+			initial_node.fill_random_values();
+		}while(!(initial_node.isSolvable(goal_node)));
 		
+		initial_node.seth(goal_node);
+		/*System.out.println('\n'+"Initial State:");
+		initial_node.display();*/
+		r = new Result();
 		
 		try
 		{
 			shc = new SimpleHillClimb();
 			shc.initialize(goal_node, initial_node);
 			r.shc = new stat(shc.result);
+			if( r.shc.isSuccessful==false)
+			{
+				r.shc.steps = 0;
+			}
 		}
 		catch(Exception e)
 		{
@@ -50,6 +57,10 @@ public class N_Puzzle {
 			hcr = new HillClimbingWithRandomRestart();
 			hcr.initialize(goal_node, initial_node);
 			r.hcr = new stat(hcr.result);
+			if( r.hcr.isSuccessful==false)
+			{
+				r.hcr.steps = 0;
+			}
 		}
 		catch(Exception e)
 		{
@@ -61,6 +72,10 @@ public class N_Puzzle {
 			sa = new SimulatedAnnealing();
 			sa.initialize(goal_node, initial_node);
 			r.sa = new stat(sa.result);
+			if( r.sa.isSuccessful==false)
+			{
+				r.sa.steps = 0;
+			}
 		}
 		catch(Exception e)
 		{
@@ -72,6 +87,10 @@ public class N_Puzzle {
 			as = new AStar();
 			as.initialize(goal_node, initial_node);
 			r.as = new stat(as.result);
+			if( r.as.isSuccessful==false)
+			{
+				r.as.steps = 0;
+			}
 		}
 		catch(Exception e)
 		{
