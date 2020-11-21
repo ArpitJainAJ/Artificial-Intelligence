@@ -64,7 +64,7 @@ public class Test_1 {
 						(successrate.as.steps)+=1;
 				}
 				System.out.println("In SHC, Total steps = "+finalresult.shc.steps+", no of success = "+successrate.shc.steps);
-				System.out.println("In HRC, Total steps = "+finalresult.hcr.steps+", no of success = "+successrate.hcr.steps);
+				System.out.println("In HCR, Total steps = "+finalresult.hcr.steps+", no of success = "+successrate.hcr.steps);
 				System.out.println("In SA, Total steps = "+finalresult.sa.steps+", no of success = "+successrate.sa.steps);
 				System.out.println("In A*, Total steps = "+finalresult.as.steps+", no of success = "+successrate.as.steps+'\n');
 			}
